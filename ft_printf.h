@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchee-ti <lchee-ti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 18:17:20 by lchee-ti          #+#    #+#             */
-/*   Updated: 2023/10/27 18:20:46 by lchee-ti         ###   ########.fr       */
+/*   Created: 2023/11/02 12:40:24 by lchee-ti          #+#    #+#             */
+/*   Updated: 2023/11/02 14:49:53 by lchee-ti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "stdlib.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+#include <stdarg.h>
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (lst == NULL || del == NULL)
-		return ;
-	del(lst->content);
-	free(lst);
-}
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int	ft_printf(const char *format, ...);
+
+#endif

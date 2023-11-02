@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchee-ti <lchee-ti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 17:51:49 by lchee-ti          #+#    #+#             */
-/*   Updated: 2023/10/27 18:13:19 by lchee-ti         ###   ########.fr       */
+/*   Created: 2023/11/02 14:44:47 by lchee-ti          #+#    #+#             */
+/*   Updated: 2023/11/02 14:53:23 by lchee-ti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <unistd.h>
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_putchar(char c)
 {
-	t_list	*last;
-
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	else
-	{
-		last = ft_lstlast(*lst);
-		last->next = new;
-	}
+	return (write(1, &c, 1));
 }

@@ -6,14 +6,15 @@
 /*   By: lchee-ti <lchee-ti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:20:46 by lchee-ti          #+#    #+#             */
-/*   Updated: 2023/10/31 17:13:12 by lchee-ti         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:56:42 by lchee-ti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
-int	ft_format(char specifier, va_list args)
+static int	ft_format(char specifier, va_list args)
 {
 	int	count;
 
@@ -41,7 +42,12 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	va_start(args, format);
 
-	va_arg(args, int);
+	while(*format)
+	{
+		if 
+		format++;
+	}
+
 	va_end(args);
 	return (return_value);
 }
