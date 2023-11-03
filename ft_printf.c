@@ -6,11 +6,10 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:20:46 by lchee-ti          #+#    #+#             */
-/*   Updated: 2023/11/02 08:57:09 by codespace        ###   ########.fr       */
+/*   Updated: 2023/11/03 06:05:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 #include <stdarg.h>
 
@@ -50,7 +49,8 @@ int	ft_printf(const char *format, ...)
 
 	while(*format)
 	{
-		if 
+		if (*format == '%')
+			*format = ft_format(*format + 1, args);
 		format++;
 	}
 
