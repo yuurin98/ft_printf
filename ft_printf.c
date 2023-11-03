@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:20:46 by lchee-ti          #+#    #+#             */
-/*   Updated: 2023/11/03 06:05:57 by codespace        ###   ########.fr       */
+/*   Updated: 2023/11/03 07:46:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static int	ft_format(char specifier, va_list args)
 
 	count = 0;
 	if (specifier == 'c')
-		count += ft_putchar_fd(va_arg(args, int), 1);
+		count += ft_printc(va_arg(args, int));
 	else if (specifier == 's')
-		count += ft_putstr_fd(va_arg(args, char *), 1);
+		count += ft_prints(va_arg(args, char *));
 	else if (specifier == 'p')
 		count +=
 	else if (specifier == 'd')
-		count += ft_putnbr_fd(va_arg(args, int), 1);
+		count += 
 	else if (specifier == 'i')
-		count +=
+		count += 
 	else if (specifier == 'u')
 		count +=
 	else if (specifier == 'x')
@@ -35,9 +35,9 @@ static int	ft_format(char specifier, va_list args)
 	else if (specifier == 'X')
 		count +=
 	else if (specifier == '%')
-		count +=
+		count += ft_putchar('%');
 	else
-		count += write(1, &specifier, 1);
+		count += ft_putchar(&specifier);
 	return (count);
 }
 
@@ -50,7 +50,10 @@ int	ft_printf(const char *format, ...)
 	while(*format)
 	{
 		if (*format == '%')
-			*format = ft_format(*format + 1, args);
+		{
+			format++;
+			format = ft_format(format, va_arg(args, int));
+		}
 		format++;
 	}
 
