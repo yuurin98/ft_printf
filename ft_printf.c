@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lchee-ti <lchee-ti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:20:46 by lchee-ti          #+#    #+#             */
-/*   Updated: 2023/11/03 07:46:51 by codespace        ###   ########.fr       */
+/*   Updated: 2023/11/06 16:11:53 by lchee-ti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,61 @@
 
 static int	ft_format(char specifier, va_list args)
 {
-	int	count;
+	int		count;
 
 	count = 0;
 	if (specifier == 'c')
-		count += ft_printc(va_arg(args, int));
+		count += ft_putchar(va_arg(args, int));
 	else if (specifier == 's')
-		count += ft_prints(va_arg(args, char *));
+		count += ft_putstr(va_arg(args, char *));
 	else if (specifier == 'p')
-		count +=
-	else if (specifier == 'd')
-		count += 
-	else if (specifier == 'i')
-		count += 
+		count += ft_printp(va_arg(args, unsigned long long));
+	else if (specifier == 'd' || specifier == 'i')
+		count += ft_putnbr(va_arg(args, int));
 	else if (specifier == 'u')
-		count +=
+		count += ft_putnbr_unsigned(va_arg(args, unsigned int));
 	else if (specifier == 'x')
-		count +=
+		count += ft_puthexlower(va_arg(args, unsigned int));
 	else if (specifier == 'X')
-		count +=
+		count += ft_puthexupper(va_arg(args, unsigned int));
 	else if (specifier == '%')
 		count += ft_putchar('%');
-	else
-		count += ft_putchar(&specifier);
 	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
+	int		i;
 	int		return_value;
 	va_list	args;
+
 	va_start(args, format);
-
-	while(*format)
+	i = 0;
+	return_value = 0;
+	while (format[i] != '\0')
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
-			format++;
-			format = ft_format(format, va_arg(args, int));
+			i++;
+			return_value += ft_format(format[i], args);
 		}
-		format++;
+		else
+			return_value += ft_putchar(format[i]);
+		i++;
 	}
-
 	va_end(args);
 	return (return_value);
 }
+
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	char *s = "what";
+
+	printf("%p\n", s);
+	ft_printf("%p\n", s);
+	return(0);
+}
+*/
